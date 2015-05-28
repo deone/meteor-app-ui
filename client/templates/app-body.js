@@ -71,15 +71,6 @@ Template.appBody.helpers({
   userMenuOpen: function() {
     return Session.get(USER_MENU_KEY);
   },
-  lists: function() {
-    return Lists.find();
-  },
-  activeListClass: function() {
-    var current = Router.current();
-    if (current.route.name === 'listsShow' && current.params._id === this._id) {
-      return 'active';
-    }
-  },
   connected: function() {
     if (Session.get(SHOW_CONNECTION_ISSUE_KEY)) {
       return Meteor.status().connected;
@@ -111,18 +102,5 @@ Template.appBody.events({
 
   'click .js-logout': function() {
     Meteor.logout();
-    
-    // if we are on a private list, we'll need to go to a public one
-    var current = Router.current();
-    if (current.route.name === 'listsShow' && current.data().userId) {
-      Router.go('listsShow', Lists.findOne({userId: {$exists: false}}));
-    }
-  },
-
-  'click .js-new-list': function() {
-    var list = {name: Lists.defaultName(), incompleteCount: 0};
-    list._id = Lists.insert(list);
-
-    Router.go('listsShow', list);
   }
 });
