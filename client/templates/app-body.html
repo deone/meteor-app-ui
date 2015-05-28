@@ -25,19 +25,16 @@
 
       <div class="list-todos">
         <a class="js-new-list link-list-new"><span class="icon-plus"></span>New List</a>
-
-        {{#each lists}}
-          <a href="{{pathFor 'listsShow'}}" class="list-todo {{activeListClass}}" title="{{name}}">
-            {{#if userId}}
-              <span class="icon-lock"></span>
-            {{/if}}
-            {{#if incompleteCount}}
-              <span class="count-list">{{incompleteCount}}</span>
-            {{/if}}
-            {{name}}
-          </a>
-        {{/each}}
-
+        <a href="#" class="list-todo" title="Favorite Scientists">
+            <span class="icon-lock"></span>
+            <span class="count-list">2</span>
+          Favorite Scientists
+        </a>
+        <a href="#" class="list-todo active" title="Favorite Scientists">
+            <span class="icon-lock"></span>
+            <span class="count-list">2</span>
+          Favorite Scientists
+        </a>
       </div>
     </section>
 
