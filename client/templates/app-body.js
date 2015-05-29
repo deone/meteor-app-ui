@@ -32,32 +32,7 @@ Meteor.startup(function () {
   }, CONNECTION_ISSUE_TIMEOUT);
 });
 
-Template.appBody.onRendered(function() {
-  this.find('#content-container')._uihooks = {
-    insertElement: function(node, next) {
-      $(node)
-        .hide()
-        .insertBefore(next)
-        .fadeIn(function () {
-          listFadeInHold.release();
-        });
-    },
-    removeElement: function(node) {
-      $(node).fadeOut(function() {
-        $(this).remove();
-      });
-    }
-  };
-});
-
 Template.appBody.helpers({
-  // We use #each on an array of one item so that the "list" template is
-  // removed and a new copy is added when changing lists, which is
-  // important for animation purposes. #each looks at the _id property of it's
-  // items to know when to insert a new item and when to update an old one.
-  thisArray: function() {
-    return [this];
-  },
   menuOpen: function() {
     return Session.get(MENU_KEY) && 'menu-open';
   },
